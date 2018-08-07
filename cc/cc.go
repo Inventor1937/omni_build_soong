@@ -133,6 +133,7 @@ type Flags struct {
 
 	Toolchain config.Toolchain
 	Clang     bool
+	Polly     bool
 	Tidy      bool
 	Coverage  bool
 	SAbiDump  bool
@@ -160,6 +161,9 @@ type ObjectLinkerProperties struct {
 type BaseProperties struct {
 	// compile module with clang instead of gcc
 	Clang *bool `android:"arch_variant"`
+
+	// compile module using polly
+	Polly *bool `android:"arch_variant"`
 
 	// Minimum sdk version supported when compiling against the ndk
 	Sdk_version *string
@@ -675,6 +679,7 @@ func (c *Module) GenerateAndroidBuildActions(actx android.ModuleContext) {
 	flags := Flags{
 		Toolchain: c.toolchain(ctx),
 		Clang:     c.clang(ctx),
+		Polly:	c.polly(ctx),
 	}
 	if c.compiler != nil {
 		flags = c.compiler.compilerFlags(ctx, flags, deps)
@@ -1134,6 +1139,24 @@ func checkLinkType(ctx android.ModuleContext, from *Module, to *Module, tag depe
 			from.stl.Properties.SelectedStl, ctx.OtherModuleName(to),
 			to.stl.Properties.SelectedStl)
 	}
+}
+
+func (c *Module) polly(ctx BaseModuleContext) bool {
+	polly := Bool(c.Properties.Polly)
+
+	if !c.clang(ctx) {
+		return false
+	}
+
+	if ctx.Host() {
+		return false
+	}
+
+	if c.Properties.Polly == nil && config.Polly {
+		return true
+	}
+
+	return polly
 }
 
 // Convert dependencies to paths.  Returns a PathDeps containing paths
