@@ -301,13 +301,14 @@ var (
 	ndkStubDepTag         = dependencyTag{name: "ndk stub", library: true}
 	ndkLateStubDepTag     = dependencyTag{name: "ndk late stub", library: true}
 	vndkExtDepTag         = dependencyTag{name: "vndk extends", library: true}
-	pollyDisabled         = []string{"libavcenc", "libavcdec", "libbluetooth", "libbnnmlowp", "libdng_sdk", "libhevcdec",
-		              "libF77blas", "libfdlibm", "libFraunhoferAAC", "libjpeg", "libjpeg_static_ndk", "libLLVMAArch64CodeGen",
-		              "libLLVMARMCodeGen", "libm", "libmpeg2dec", "libmedia_jni", "libneuralnetworks_common", "libopus",
-		              "libpdfiumfxge", "libpdfiumjpeg", "libpdfiumopenjpeg", "libpdfiumfpdftext", "libpdfiumfx_libopenjpeg",
-		              "libRS_internal", "libRSCpuRef", "libskia", "libsonic", "libspeexresampler", "libstagefright_amrnbenc",
-		              "libstagefright_amrwbenc", "libtflite_kernels", "libtflite_kernel_utils", "libvpx", "libwebp-decode",
-		              "libwebp-encode", "libwebrtc_apm", "libwebrtc_isac", "libwebrtc_spl", "libyuv",}
+	pollyDisabled         = []string{"libavcenc", "libavcdec", "libbluetooth", "libblasV8", "libbnnmlowp", "libbnnmlowpV8",
+                              "libdng_sdk", "libhevcdec", "libF77blas", "libF77blasV8", "libfdlibm", "libFraunhoferAAC", "libjpeg",
+                              "libjpeg_static_ndk", "libLLVMAArch64CodeGen", "libLLVMARMCodeGen", "libm", "libmpeg2dec",
+                              "libmedia_jni", "libneuralnetworks_common", "libopus", "libpdfiumfxge", "libpdfiumjpeg",
+                              "libpdfiumopenjpeg", "libpdfiumfpdftext", "libpdfiumfx_libopenjpeg", "libRS_internal", "libRSCpuRef",
+                              "libRSSupport", "libskia", "libsonic", "libspeexresampler", "libstagefright_amrnbenc",
+                              "libstagefright_amrwbenc", "libtflite_kernels", "libtflite_kernel_utils", "libvpx", "libwebp-decode",
+                              "libwebp-encode", "libwebrtc_apm", "libwebrtc_isac", "libwebrtc_spl", "libyuv",}
 )
 
 // Module contains the properties and members used by all C/C++ module types, and implements
